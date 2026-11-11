@@ -1,0 +1,9 @@
+﻿{
+  "appId": "cl.pequenosreyes.portal",
+  "appName": "Pequenos Reyes",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "http",
+    "cleartext": true
+  }
+}

@@ -1,8 +1,16 @@
 // TEC-17: cliente HTTP para la API propia (FastAPI).
 // Todas las llamadas a la API pasan por pedir(): los componentes nunca usan fetch directo.
+import { Capacitor } from '@capacitor/core'
+
+const esAndroidNativo =
+  Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'android'
 
 // import.meta.env solo existe en Vite; en las pruebas con Node es undefined.
-export const API_URL = import.meta.env?.VITE_API_URL || 'http://localhost:8000/api/v1'
+export const API_URL = esAndroidNativo
+  ? import.meta.env?.VITE_API_ANDROID || 'http://10.0.2.2:8000/api/v1'
+  : import.meta.env?.VITE_API_WEB ||
+    import.meta.env?.VITE_API_URL ||
+    'http://localhost:8000/api/v1'
 
 // Mensaje para el usuario según el código HTTP.
 const MENSAJES = {
